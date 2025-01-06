@@ -9,6 +9,16 @@ function Main() {
         const response = await fetch(url);
         const data = await response.json();
         console.log('fetched data: ', data.results);
+        getPokeDetail(data.results);
+    }
+
+    const getPokeDetail = async (results) => {
+        const promises = results.map(async (mon) => {
+            const response = await fetch(mon.url);
+            return await response.json();
+        })
+        const result = await Promise.all(promises);
+        setPokeData(result);
     }
 
     useEffect(() => {
@@ -16,7 +26,15 @@ function Main() {
     }, []);
 
     return (
-        <div>Main</div>
+        <div>
+            {pokeData.map((mon) => {
+                return (
+                    <div>
+                        <h2>{mon.name}</h2>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
