@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const url = "https://pokeapi.co/api/v2/pokemon?limit=10"
+const url = "https://pokeapi.co/api/v2/pokemon?limit=5"
 
 function Main() {
     const [pokeData, setPokeData] = useState([]);
@@ -25,11 +25,19 @@ function Main() {
         getPokeData();
     }, []);
 
+    useEffect(() => {
+        console.log("pokedata changes: ", pokeData)
+        pokeData.forEach((mon) => {
+            console.log(mon)
+        })
+    }, [pokeData]);
+
     return (
         <div>
             {pokeData.map((mon) => {
                 return (
-                    <div>
+                    <div key={mon.id}>
+                        <img src={mon.sprites.front_default} alt="" />
                         <h2>{mon.name}</h2>
                     </div>
                 )
