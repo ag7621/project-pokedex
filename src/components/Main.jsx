@@ -37,15 +37,7 @@ function Main() {
         <div>
             {pokeData.map((mon) => {
                 return (
-                    <>
-                        {/* <div key={mon.id}>
-                            <img src={mon.sprites.front_default} alt="" />
-                            <h2>{mon.name}</h2>
-                        </div> */}
-
-                        <PokeDetail mon={mon} key={mon.id} />
-
-                    </>
+                    <PokeDetail mon={mon} key={mon.id} />
                 )
             })}
         </div>
