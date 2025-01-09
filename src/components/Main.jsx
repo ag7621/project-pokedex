@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PokeDetail from './PokeDetail';
 
 const url = "https://pokeapi.co/api/v2/pokemon?limit=5"
 
@@ -36,10 +37,15 @@ function Main() {
         <div>
             {pokeData.map((mon) => {
                 return (
-                    <div key={mon.id}>
-                        <img src={mon.sprites.front_default} alt="" />
-                        <h2>{mon.name}</h2>
-                    </div>
+                    <>
+                        {/* <div key={mon.id}>
+                            <img src={mon.sprites.front_default} alt="" />
+                            <h2>{mon.name}</h2>
+                        </div> */}
+
+                        <PokeDetail mon={mon} key={mon.id} />
+
+                    </>
                 )
             })}
         </div>
